@@ -9,15 +9,16 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-    @StateObject var locationManager = LocationManager()
+    @StateObject private var locationManager = LocationManager()
     
     var body: some View {
         ZStack {
+            // MARK: Map View
             mapView
             
-            // MARK: Controls
             VStack {
                 Spacer()
+                // MARK: Info Card
                 positionDataView
             }
         }
@@ -74,11 +75,7 @@ extension ContentView {
     // MARK: Tracking Button
     var trackingButton: some View {
         Button {
-            if locationManager.isTracking {
-                locationManager.stopUpdatingLocation()
-            } else {
-                locationManager.startUpdatingLocation()
-            }
+            locationManager.toggleLocationUpdates()
         } label: {
             Image(systemName: "location.circle.fill")
                 .foregroundColor(locationManager.isTracking ? .blue : .gray)
@@ -88,6 +85,5 @@ extension ContentView {
         .font(.system(size: 50))
         .frame(width: 50, height: 50)
     }
-    
 }
 

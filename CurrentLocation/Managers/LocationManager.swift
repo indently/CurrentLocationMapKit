@@ -17,7 +17,6 @@ import SwiftUI
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
-    
     @Published var locationStatus: CLAuthorizationStatus?
     @Published var lastLocation: CLLocation?
     
@@ -38,6 +37,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         // Requires: Required background modes in plist
         locationManager.allowsBackgroundLocationUpdates = true
         startUpdatingLocation()
+    }
+    
+    func toggleLocationUpdates() {
+        isTracking ? stopUpdatingLocation() : startUpdatingLocation()
     }
     
     func stopUpdatingLocation() {
@@ -82,27 +85,27 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         withAnimation {
             mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: currentZoom, longitudeDelta: currentZoom))
             
+            
             // Get speed in km/h (speed is returned in metres per second)
             speed = (lastLocation?.speed ?? 0) * 60 * 60 / 1000
-            
-            print(speed)
-            switch(speed) {
-            case 0...25:
-                currentZoom = 0.005
-            case 26...50:
-                currentZoom = 0.02
-            case 51...100:
-                currentZoom = 0.04
-            case 101...:
-                currentZoom = 0.06
-            default:
-                print("")
-            }
-            
-            
+
+            setZoom(speed: speed)
         }
-        
-        
         // print(#function, location)
+    }
+    
+    func setZoom(speed: Double) {
+        switch(speed) {
+        case ...25:
+            currentZoom = 0.005
+        case 26...50:
+            currentZoom = 0.02
+        case 51...100:
+            currentZoom = 0.04
+        case 101...:
+            currentZoom = 0.06
+        default:
+            currentZoom = 0.1
+        }
     }
 }
