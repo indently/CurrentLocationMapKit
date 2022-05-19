@@ -8,18 +8,8 @@
 import SwiftUI
 import MapKit
 
-extension View {
-    func roundedMaterialBackground(cornerRadius: CGFloat) -> some View {
-        self
-            .background(.thinMaterial)
-            .cornerRadius(cornerRadius)
-            .padding()
-    }
-}
-
 struct ContentView: View {
     @StateObject var locationManager = LocationManager()
-    
     
     var body: some View {
         ZStack {
@@ -27,11 +17,13 @@ struct ContentView: View {
             
             // MARK: Controls
             VStack {
-                zoomView
                 Spacer()
                 positionDataView
             }
-            
+        }
+        .overlay(alignment: .topTrailing) {
+            trackingButton
+                .padding()
         }
     }
 }
@@ -49,18 +41,11 @@ extension ContentView {
             .ignoresSafeArea()
     }
     
-    // MARK: Zoom
-    var zoomView: some View {
-        Stepper("Zoom: \(locationManager.currentZoom, specifier: "%.2f")x",value: $locationManager.currentZoom, in: 0.10...2.1, step: 1.0)
-            .padding()
-            .roundedMaterialBackground(cornerRadius: 16)
-    }
     
     // MARK: Current Position
     var positionDataView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("Status: \(locationManager.statusString)")
                 Text("Latitude: \(locationManager.latitude)")
                 Text("Longitude: \(locationManager.longitude)")
             }
@@ -78,9 +63,30 @@ extension ContentView {
                 .animation(nil, value: locationManager.speed)
                 .foregroundColor(.white)
             }
+            .padding(4)
+            .background(Circle()
+                .foregroundColor(.white))
         }
         .padding()
         .roundedMaterialBackground(cornerRadius: 16)
+    }
+    
+    // MARK: Tracking Button
+    var trackingButton: some View {
+        Button {
+            if locationManager.isTracking {
+                locationManager.stopUpdatingLocation()
+            } else {
+                locationManager.startUpdatingLocation()
+            }
+        } label: {
+            Image(systemName: "location.circle.fill")
+                .foregroundColor(locationManager.isTracking ? .blue : .gray)
+        }
+        .background(Circle()
+            .foregroundColor(.white))
+        .font(.system(size: 50))
+        .frame(width: 50, height: 50)
     }
     
 }

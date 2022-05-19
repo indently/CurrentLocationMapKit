@@ -25,6 +25,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var longitude: Double = 0
     @Published var currentZoom: Double = 0.2
     @Published var speed = 0.0
+    @Published var isTracking = true
     
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     
@@ -36,6 +37,16 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         // Requires: Required background modes in plist
         locationManager.allowsBackgroundLocationUpdates = true
+        startUpdatingLocation()
+    }
+    
+    func stopUpdatingLocation() {
+        isTracking = false
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func startUpdatingLocation() {
+        isTracking = true
         locationManager.startUpdatingLocation()
     }
     
@@ -73,6 +84,22 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             
             // Get speed in km/h (speed is returned in metres per second)
             speed = (lastLocation?.speed ?? 0) * 60 * 60 / 1000
+            
+            print(speed)
+            switch(speed) {
+            case 0...25:
+                currentZoom = 0.005
+            case 26...50:
+                currentZoom = 0.02
+            case 51...100:
+                currentZoom = 0.04
+            case 101...:
+                currentZoom = 0.06
+            default:
+                print("")
+            }
+            
+            
         }
         
         

@@ -12,6 +12,7 @@
 		7A4E7C0728355633007A954B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A4E7C0628355633007A954B /* Assets.xcassets */; };
 		7A4E7C0A28355633007A954B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A4E7C0928355633007A954B /* Preview Assets.xcassets */; };
 		7A4E7C1128355646007A954B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4E7C1028355646007A954B /* LocationManager.swift */; };
+		7A7AAAFC283634120009E556 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7AAAFB283634120009E556 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7A4E7C0928355633007A954B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7A4E7C1028355646007A954B /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7A4E7C122835714B007A954B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7A7AAAFB283634120009E556 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				7A4E7C122835714B007A954B /* Info.plist */,
 				7A4E7C0228355631007A954B /* CurrentLocationApp.swift */,
+				7A7AAAFB283634120009E556 /* Extensions.swift */,
 				7A4E7C0428355631007A954B /* ContentView.swift */,
 				7A4E7C1028355646007A954B /* LocationManager.swift */,
 				7A4E7C0628355633007A954B /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 				7A4E7C0528355631007A954B /* ContentView.swift in Sources */,
 				7A4E7C0328355631007A954B /* CurrentLocationApp.swift in Sources */,
 				7A4E7C1128355646007A954B /* LocationManager.swift in Sources */,
+				7A7AAAFC283634120009E556 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,11 +277,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CurrentLocation/Preview Content\"";
+				DEVELOPMENT_TEAM = GRM8764MXR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurrentLocation/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need to use your app in the background sometimes.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your position is required to display nearby locations.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need to access your location for this app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,11 +308,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CurrentLocation/Preview Content\"";
+				DEVELOPMENT_TEAM = GRM8764MXR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CurrentLocation/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need to use your app in the background sometimes.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your position is required to display nearby locations.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need to access your location for this app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
